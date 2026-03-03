@@ -1,23 +1,12 @@
-import os
 import streamlit as st
 from google import genai
 
-# --- Load API key from Streamlit secrets or environment ---
-API_KEY = None
-if "GEMINI_API_KEY" in st.secrets:
-    API_KEY = st.secrets["GEMINI_API_KEY"]
-else:
-    API_KEY = os.getenv("GEMINI_API_KEY")
-
-if not API_KEY:
-    st.error("Missing GEMINI_API_KEY. Add it to .streamlit/secrets.toml or set it as an environment variable.")
-    st.stop()
+# --- Hardcoded API key ---
+API_KEY = "AIzaSyCfPXue_4tcr6hjPR15CYW0JunmKEaovHc"
 
 # --- Create Gemini client (Gemini Developer API / AI Studio key) ---
 client = genai.Client(api_key=API_KEY)
 
-# Model id examples appear in Google docs; pick one your project has access to.
-# In current docs, generate_content is called via client.models.generate_content(...)
 MODEL_ID = "gemini-3-flash-preview"
 
 st.set_page_config(page_title="Gemini + Streamlit", layout="centered")
